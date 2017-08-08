@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>凤凰新闻</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="description">
+    <meta name="Keywords">
+    <link rel="stylesheet" href="./css/reset.min.css">
+    <link rel="stylesheet" href="./css/swiper.min.css">
+    <link rel="stylesheet" href="./css/H5.css">
+    <style>
+        @font-face {
+            font-family: 'iconfont';
+            src: url('./font/iconfont.eot');
+            src: url('./font/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('./font/iconfont.woff') format('woff'), /* Modern Browsers */ url('./font/iconfont.ttf') format('truetype'), /* Safari, Android, iOS */ url('./font/iconfont.svg#YourWebFontName') format('svg'); /* Legacy iOS */
+        }
+
+        [class^='icon_'] {
+            font-family: iconfont;
+            font-weight: normal;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .icon_com:before {
+            content: '\e669'
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: .59rem;
+            padding-top: .21rem;
+            border-bottom: 1px solid #e3e3e3;
+            background: #fff;
+            z-index: 10;
+
+        }
+
+        header .i-logo {
+            margin: 0 auto;
+            width: 1.95rem;
+            height: .37rem;
+        }
+
+        header .i-logo img {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /*nav*/
+        nav {
+            position: fixed;
+            top: .59rem;
+            height: .8rem;
+            line-height: .8rem;
+            font-size: .36rem;
+            overflow: hidden;
+            overflow-x: scroll;
+            background: #fff;
+            z-index: 10;
+
+        }
+
+        nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        nav .menu {
+            white-space: nowrap;
+            font-size: 0;
+        }
+
+        nav a {
+            font-size: .36rem;
+            display: inline-block;
+            padding: 0 .3rem;
+            color: #727272;
+        }
+
+        nav a.cur {
+            color: #f54343;
+        }
+
+        .focus {
+            position: relative;
+        }
+
+        .focus img {
+            width: 100%;
+        }
+
+        .focus .bg {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            display: block;
+            width: 100%;
+            height: .8rem;
+            background: -webkit-linear-gradient(transparent, #000);
+        }
+
+        .focus .text {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            /*width: 100%;*/
+            padding: 0 1rem 0 .3rem;
+            height: .8rem;
+            line-height: .8rem;
+            font-size: .32rem;
+            box-sizing: border-box;
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .focus .swiper-slide a {
+            color: #FFFFFF;
+        }
+
+        .swiper-pagination {
+            text-align: right;
+            font-size: .2rem;
+            color: #fff;
+            bottom: .1rem;
+        }
+
+        .swiper-container-horizontal > .swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {
+            left: auto;
+            right: .2rem;
+        }
+
+        .swiper-pagination-current {
+            font-size: .36rem;
+            color: #f54343
+        }
+
+
+    </style>
+</head>
+<body>
+<!--header begin-->
+<header>
+    <h1 class="i-logo">
+        <a href="#"><img src="./img/logo.png" alt=""></a>
+    </h1>
+</header>
+<!--header end-->
+
+
+<!--nav begin-->
+<nav>
+    <div class="menu">
+        <a class="cur" href="#">头条</a>
+        <a href="#">视频</a>
+        <a href="#">财经</a>
+        <a href="#">凤凰号</a>
+        <a href="#">凤凰财经</a>
+        <a href="#">头条</a>
+        <a href="#">视频</a>
+        <a href="#">财经</a>
+        <a href="#">凤凰号</a>
+        <a href="#">凤凰财经</a>
+    </div>
+
+</nav>
+<!--nav end-->
+
+<div id="wrapper">
+    <div id="scroller">
+        <div class="main">
+            <div class="focus">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+
+                        </div>
+
+                    </div>
+                    <div class="swiper-pagination"></div>
+
+                </div>
+            </div>
+
+            <section class="i-con">
+
+            </section>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+<script src="./js/jquery-1.10.1.min.js"></script>
+<script src="./js/ejs.min.js"></script>
+<script src="./js/swiper.min.js"></script>
+<script src="./js/iscroll.js"></script>
+
+<script type="text/template" id="focusTemplate">
+
+    <%$.each(focusTepData,function(index,item){%>
+    <div class="swiper-slide">
+        <a href='<%=item.link.weburl%>'>
+            <img src="<%=item.thumbnail%>" alt="">
+            <span class="bg"></span>
+            <span class="text"><%=item.title%></span>
+        </a>
+    </div>
+    <%})%>
+
+</script>
+
+
+<script type="text/template" id="listTemplate">
+
+
+    <%$.each(listTepData,function(index,item){%>
+    <%if(item.style.images){%>
+    <section class="i-itemPic">
+        <a href="<%=item.link.weburl%>" target="_blank">
+            <div class="i-title"><%=item.title%></div>
+            <div class="i-pics">
+                <ul class="clear">
+                    <li><img src="<%=item.style.images[0]%>" alt="<%=item.title%>"/></li>
+                    <li><img src="<%=item.style.images[1]%>" alt="<%=item.title%>"/></li>
+                    <li><img src="<%=item.style.images[2]%>" alt="<%=item.title%>"/></li>
+                </ul>
+            </div>
+            <div class="i-info">
+                <div class="i-sor">
+                    <div class="i-source"><%=item.source%></div>
+                    <div class="i-time"><%=item.updateTime%></div>
+                </div>
+                <div class="i-com">
+                    <div class="i-num"><%=item.commentsall%></div>
+                    <div class="icon_com"></div>
+                </div>
+            </div>
+        </a>
+    </section>
+    <%}else if(item.phvideo){%>
+    <section class="i-itemPic">
+        <a href="<%=item.link.weburl%>" target="_blank">
+            <div class="i-title"><%=item.title%></div>
+            <div class="i-bigPic">
+                <img src="<%=item.thumbnail%>"
+                     alt="<%=item.title%>"/>
+            </div>
+            <div class="i-info">
+                <div class="i-sor">
+                    <div class="i-source"><%=item.source%></div>
+                    <div class="i-time"><%=item.updateTime%></div>
+                </div>
+                <div class="i-com">
+                    <div class="i-num"><%=item.commentsall%></div>
+                    <div class="icon_com"></div>
+                </div>
+            </div>
+        </a>
+    </section>
+    <%}else if(item.thumbnail){%>
+    <section class="i-item">
+        <a href="<%=item.link.weburl%>">
+            <!--左图-->
+            <div class="i-pic">
+                <img src="<%=item.thumbnail%>" alt="<%=item.title%>"/>
+            </div>
+            <!--右文-->
+            <div class="i-des">
+                <div class="i-title"><%=item.title%></div>
+                <div class="i-info">
+                    <div class="i-time"><%=item.updataTime%></div>
+                    <div class="i-com">
+                        <div class="i-num"><%=item.commentsall%></div>
+                        <div class="icon_com"></div>
+                        <%if(item.style.attribute){%>
+                        <div class="i-label"><%=item.style.attribute%></div>
+                        <%}%>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </section>
+
+    <%}else{%>
+    <section class="i-itemPic">
+        <a href="<%=item.link.weburl%>" target="_blank">
+            <div class="i-title i-title-txt"><%=item.title%></div>
+            <div class="i-info">
+                <div class="i-sor">
+                    <div class="i-source"><%=item.source%></div>
+                    <div class="i-time"><%=item.updateTime%></div>
+                </div>
+                <div class="i-com">
+                    <div class="i-num"><%=item.commentsall%></div>
+                    <div class="icon_com"></div>
+                </div>
+            </div>
+        </a>
+    </section>
+    <%}%>
+    <%})%>
+
+
+</script>
+
+
+<script>
+
+    function move() {
+        var a = 750;
+        var b = document.documentElement.clientWidth;
+        var c = b / a;
+        document.documentElement.style.fontSize = c * 100 + 'px'
+    }
+    move();
+    window.addEventListener('resize', move);
+
+
+    $.ajax({
+        url: 'http://api.iclient.ifeng.com/ClientNews?id=SYLB10,SYDT10&gv=5.4.0&os=ios&uid=8jWzrXDWQeep2Nw4AZYzmHxkbneHy4Fj',
+        type: 'get',
+        dataType: 'jsonp',
+        jsonp: 'callback',
+        success: bindHTML
+    });
+
+
+    function bindHTML(data) {
+
+        for (var i = 0; i < data.length; i++) {
+            if (data[i].type == 'focus') {
+                foucsData = data[i].item
+            } else if (data[i].type == 'list') {
+                listData = data[i].item
+            }
+        }
+
+
+        var focusHtml = $('#focusTemplate').html();
+        var focusResult = ejs.render(focusHtml, {focusTepData: foucsData});
+        $(".swiper-wrapper").html(focusResult);
+
+
+        var listHtml = $('#listTemplate').html();
+        var listResult = ejs.render(listHtml, {listTepData: listData});
+        $(".i-con").html(listResult);
+
+
+        var mySwiper = new Swiper('.swiper-container', {
+            loop: true,
+            autoplay:3000,
+            pagination: '.swiper-pagination',
+            paginationType: 'fraction',
+            autoplayDisableOnInteraction: true
+
+        });
+
+    }
+
+
+</script>
+
+
+
+

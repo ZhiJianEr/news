@@ -1,0 +1,199 @@
+
+
+.border{
+  padding: .2rem 0;
+  border-bottom:1px solid #efefef;
+}
+
+#wrapper{
+  //margin-top: 1.38rem;
+  top: 1.38rem;
+  position: relative;
+  bottom: 1.25rem;
+
+}
+.i-item{
+  .border;
+  a{
+    display: flex;
+    padding: .24rem .3rem;
+    .i-pic{
+      width: 1.82rem;
+      height: 1.3rem;
+      margin-right:.2rem;
+      img{
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .i-des{
+      flex: 1;
+      display: flex;
+      display: -webkit-flex;
+      justify-content: space-between;
+      -webkit-flex-direction: column;
+      .i-title{
+        font-size: .36rem;
+        line-height: .44rem;
+        color: #1a1a1a;
+        //多行文本出现省略号必备的4个条件
+        //先转为弹性盒模型,然后控制方向和文字的行数,最后溢出隐藏
+        display: flex;
+        display: -webkit-flex;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;  //旧版本的方向
+        flex-direction: column;     //新版本的方向
+        -webkit-line-clamp:2;
+        overflow: hidden;
+
+
+      }
+      .i-info{
+        display: flex;
+        display: -webkit-flex;
+        justify-content: space-between;
+        font-size: .22rem;
+        color: #999;
+        .i-com{
+          display: flex;
+          display: -webkit-flex;
+          .icon_com{
+            font-size: .36rem;
+            margin-top: -.03rem;
+          }
+          .i-label{
+            border: 1px solid #f54343;
+            border-radius: .03rem;
+            padding: 0 .1rem;
+            margin-left: .1rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.i-itemPic{
+  .border;
+  padding: .2rem .3rem;
+  .i-title{
+    font-size: .36rem;
+    line-height: .44rem;
+    color: #1a1a1a;
+    //多行文本出现省略号必备的4个条件
+    //先转为弹性盒模型,然后控制方向和文字的行数,最后溢出隐藏
+    display: flex;
+    display: -webkit-flex;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;  //旧版本的方向
+    flex-direction: column;     //新版本的方向
+    -webkit-line-clamp:1;
+    overflow: hidden;
+  }
+  .i-pics{
+    margin: .2rem 0;
+    ul{
+      margin-left:-.09rem;
+      //overflow: hidden;
+      li{
+        float: left;
+        width: 33.33%;
+        padding-left:.09rem;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        img{
+          display: block;
+          width: 100%;
+
+        }
+      }
+    }
+  }
+  .i-bigPic{
+    margin: .2rem 0;
+    img{
+      display: block;
+      width: 100%;
+    }
+  }
+  .i-info{
+    display: flex;
+    display:-webkit-flex;
+    justify-content: space-between;
+    font-size: .22rem;
+    color: #999;
+    //两端对齐
+    .i-sor{
+      display: flex;
+      display:-webkit-flex;
+      .i-source{
+        margin-right: .2rem;
+      }
+    }
+    .i-com{
+      display: flex;
+      display:-webkit-flex;
+      .icon_com{
+        font-size: .36rem;
+        margin-top: -.03rem;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+#pullDown, #pullUp {
+  background:#fff;
+  height:40px;
+  line-height:40px;
+  padding:5px 10px;
+  border-bottom:1px solid #ccc;
+  font-weight:bold;
+  font-size:14px;
+  color:#888;
+}
+#pullDown .pullDownIcon, #pullUp .pullUpIcon  {
+  display:block; float:left;
+  width:40px; height:40px;
+  background:url(http://sandbox.runjs.cn/uploads/rs/200/ptvnx6ur/pull-icon@2x.png) 0 0 no-repeat;
+  -webkit-background-size:40px 80px;
+  background-size:40px 80px;
+  -webkit-transition-property:-webkit-transform;
+  -webkit-transition-duration:250ms;
+}
+#pullDown .pullDownIcon {
+  -webkit-transform:rotate(0deg) translateZ(0);
+}
+#pullUp .pullUpIcon  {
+  -webkit-transform:rotate(-180deg) translateZ(0);
+}
+
+#pullDown.flip .pullDownIcon {
+  -webkit-transform:rotate(-180deg) translateZ(0);
+}
+
+#pullUp.flip .pullUpIcon {
+  -webkit-transform:rotate(0deg) translateZ(0);
+}
+
+#pullDown.loading .pullDownIcon, #pullUp.loading .pullUpIcon {
+  background-position:0 100%;
+  -webkit-transform:rotate(0deg) translateZ(0);
+  -webkit-transition-duration:0ms;
+
+  -webkit-animation-name:loading;
+  -webkit-animation-duration:2s;
+  -webkit-animation-iteration-count:infinite;
+  -webkit-animation-timing-function:linear;
+}
+
+@-webkit-keyframes loading {
+  from { -webkit-transform:rotate(0deg) translateZ(0); }
+  to { -webkit-transform:rotate(360deg) translateZ(0); }
+}
